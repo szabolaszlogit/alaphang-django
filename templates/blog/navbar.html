@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="navbar-light">
+            <button class="navbar-toggler d-md-none" type="button" data-toggle="collapse" data-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+              </button>
+                  
+            <div class="py-1 mb-2 collapse d-md-block" id="collapseNavbar">
+
+                <nav class="nav d-flex flex-column flex-md-row justify-content-md-between " >
+                    <a class="p-2 text-muted" href="#">Alaphang</a>
+
+                  {% if navbars %}  
+                    {% for navbar in navbars %}
+                    <a class="p-2 text-muted" href="{% url 'blog:detail' navbar.id %}">{{ navbar.post_title }}</a>
+                    {% endfor %}
+                    {% else %}
+                    <p>Nincs ilyen cikk.</p>
+                {% endif %}    
+
+                </nav>
+              </div>
+
+           </div> 
+        </div>
+    </div>
+</div>
+
+

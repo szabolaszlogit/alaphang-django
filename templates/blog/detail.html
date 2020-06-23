@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+
+        {% if post %}
+        <div class="card border-light mb-3" >
+            <div class="card-header">{{ post.post_category }}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ post.post_title }} </h5>
+              <p class="card-text">{{ post.post_content }}</p>
+            </div>
+          </div>                 
+        
+        {{ post.post_published }}
+        {{ post.pk }}
+        {% else %}
+         <p>Nincs ilyen cikk.</p>
+        {% endif %}    
+
+
+  {% endblock %}
