@@ -1,31 +1,32 @@
+<div class="card border-light mb-3" >
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h5 class="card-title"> </h5>
+    <p class="card-text">
+      <h2>Tartalom</h2>
+      
+      <p>Itt vagy most: {{ post.post_title }} </p>
+      <p>Kategória: {{ post.post_category  }} </p>
 
-        <div class="card border-light mb-3" >
-            <div class="card-header"></div>
-            <div class="card-body">
-              <h5 class="card-title"> </h5>
-              <p class="card-text">
-                <h2>Tartalom</h2>
-                
-                <p>Itt vagy most: {{ post.post_title }} </p>
-                <p>Kategória: {{ post.post_category  }} </p>
+      <a class="text-muted" href="{% url 'blog:detail' 'az-elektromos-gitar-felepitase' %}">Következő</a>
+      <a  href="{{post.get_next_by_post_order }}">
+        fsdfdsdffsdf</a>
+     {{ next }}{{prev}} {{ categorys}} {{ posts_in_actual_category}}
+     {% if next  %}
+     <a class="text-muted" href="{% url 'blog:detail' next.slug %}">{{next.post_title}}</a>
+     {% endif %}
+      {% for post_in_category in posts_in_category %}
+      <p>Post in category: Title: {{ post_in_category.post_title }}, ID: {{ post_in_category.id }}, Order: {{ post_in_category.post_order }} </p>
+      <a class="text-muted" href="{% url 'blog:detail' post_in_category.id %}">{{ post_in_category.post_title }}</a>
+      {% endfor %}                
 
-                {% if post.post_order > 1 %}
-                  <a class="text-muted" href="{% url 'blog:detail' post.post_order|add:'-1' %}">Előző</a>     
-                {% endif %}
+                  
+    </p>
+  </div>
+</div> 
 
-                {% if post.post_order != posts|length %}
-                <a class="text-muted" href="{% url 'blog:detail' post.post_order|add:'1' %}">Következő</a> 
-                {% endif %}
-                
-                {% for post_in_category in posts_in_category %}
-                <p>Post in category: Title: {{ post_in_category.post_title }}, ID: {{ post_in_category.id }}, Order: {{ post_in_category.post_order }} </p>
-                <a class="text-muted" href="{% url 'blog:detail' post_in_category.id %}">{{ post_in_category.post_title }}</a>
-                {% endfor %}                
-          
-                           
-              </p>
-            </div>
-          </div> 
+
+
 
 
   

@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from .models import Post, Category
 
 from django.views import View
+from django.views import generic
 
 def DetailView(request, post_order):
     post = get_object_or_404(Post, post_order=post_order)
@@ -19,9 +20,26 @@ def DetailView(request, post_order):
     }
     return render(request, 'blog/detail.html', context)
 
-class DetailView(View):
-    
 
-    q = Post(post_title="What's new?", post_category_id = 1, post_order = 33,  post_content = 'dhsdjsdjsadhhsh' )
-    q.save()
+class SlugDetailView(generic.DetailView):
+    model = Post
+    template_name = 'blog/detail.html'
 
+    def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+
+            nextpost = Post.objects.get(post_order=self.object.post_order+1)
+            if Post.objects.filter(pk = nextpost.pk).exists():
+                context['next'] = Post.objects.get(post_order=self.object.post_order+1)
+            else:
+                context['next'] = None
+
+   
+            #context['next'] = Post.objects.get(pk=self.object.post_order+1)
+            #context['prev'] = Post.objects.get(pk=self.object.post_order-1)
+            context['categorys'] = Category.objects.all()
+            context['posts_in_actual_category'] = Post.objects.filter(post_category=self.object.post_category)
+            return context
+
+class Posts(generic.ListView):
+    model = Post
