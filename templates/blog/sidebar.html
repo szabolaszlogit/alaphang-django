@@ -1,32 +1,78 @@
-<div class="card border-light mb-3" >
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h5 class="card-title"> </h5>
-    <p class="card-text">
-      <h2>Tartalom</h2>
-      
-      <p>Itt vagy most: {{ post.post_title }} </p>
-      <p>Kategória: {{ post.post_category  }} </p>
+{% if post %}
+<div class="col-sm-12 col-md-3">
+  
 
-      <a class="text-muted" href="{% url 'blog:detail' 'az-elektromos-gitar-felepitase' %}">Következő</a>
-      <a  href="{{post.get_next_by_post_order }}">
-        fsdfdsdffsdf</a>
-     {{ next }}{{prev}} {{ categorys}} {{ posts_in_actual_category}}
-     {% if next  %}
-     <a class="text-muted" href="{% url 'blog:detail' next.slug %}">{{next.post_title}}</a>
-     {% endif %}
-      {% for post_in_category in posts_in_category %}
-      <p>Post in category: Title: {{ post_in_category.post_title }}, ID: {{ post_in_category.id }}, Order: {{ post_in_category.post_order }} </p>
-      <a class="text-muted" href="{% url 'blog:detail' post_in_category.id %}">{{ post_in_category.post_title }}</a>
-      {% endfor %}                
 
-                  
+  <div class="navbar-light">
+    <p class="navbar-toggler d-md-none btn btn-primary d-block mb-1 text-left" data-toggle="collapse"
+      data-target="#collapseSidebar" aria-controls="collapseSidebar" aria-expanded="false"
+      aria-label="Toggle navigation">
+      Tartalom
     </p>
   </div>
+
+  <div class="collapse d-md-block" id="collapseSidebar">
+    
+    <div class="card mb-5">
+      <h5 class="card-header">Kategóriák</h5>
+      <div class="card-body">
+        <!-- <h6 class="card-title border-bottom">{{ post.post_category  }}</h5> -->
+        {% if categorys %}
+          {% for category in categorys %}
+            {% if category.pk == post.post_category.pk %}
+            <a href="{% url 'blog:categorys' category.slug %}"
+              class="btn btn-danger d-block mb-1">{{ category.category_name }}</a>
+            {% else %}
+            <a href="{% url 'blog:categorys' category.slug %}"
+              class="btn btn-primary d-block mb-1">{{ category.category_name }}</a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+   
+
+    <div class="card mb-5">
+      <div class="card-body">
+
+        {% if next  %}
+        <a class="btn btn-primary d-block mb-1" href="{% url 'blog:detail' next.slug %}">Következő:
+          {{next.post_title}}</a>
+        {% endif %}
+
+        {% if prev  %}
+        <a class="btn btn-primary d-block mb-1" href="{% url 'blog:detail' prev.slug %}">Előző: {{prev.post_title}}</a>
+        {% endif %}
+
+      </div>
+    </div>
+
+
+    <div class="card mb-5">
+      <h5 class="card-header">Továbbiak</h5>
+      <div class="card-body">
+        <p class="card-text"><i>{{ post.post_category  }}</i> kategőria többi cikke:</p>
+      </div>
+
+      {% for post_in_actual_category in posts_in_actual_category %}
+      <ul class="list-group list-group-flush">
+        {% if post_in_actual_category.pk == post.pk %}
+        <li class="list-group-item text-secondary">
+          <a class=""
+            href="{% url 'blog:detail' post_in_actual_category.slug %}">{{ post_in_actual_category.post_title }}</a>
+        </li>
+        {% else %}
+        <li class="list-group-item">
+          <a class="text-primary"
+            href="{% url 'blog:detail' post_in_actual_category.slug %}">{{ post_in_actual_category.post_title }}</a>
+        </li>
+        {%endif%}
+        {% endfor %}
+      </ul>
+    </div>
+
+
+
+  </div>
 </div> 
-
-
-
-
-
-  
+{% endif %}

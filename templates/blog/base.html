@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'blog.css' %}">
 
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'clean-blog.css' %}">
 
 <title>{{ post.post_title }}</title>
 </head>
@@ -16,14 +17,11 @@
 {% include "blog/navbar.html" %}
 
  <div class="container">  
-    <div class="row">
-        <div class="col-sm-6">
-{% block content %}{% endblock %}
+        <div class="row">        
+        {% include "blog/sidebar.html" %}
+        {% block content %}{% endblock %}  
+        {% block category %}{% endblock %} 
         </div>
-        <div class="col-sm-6">
-{% include "blog/sidebar.html" %}
-        </div>
-      </div>
 </div> 
 
 {% include "blog/footer.html" %}

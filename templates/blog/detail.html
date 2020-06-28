@@ -2,21 +2,32 @@
 
 {% block content %}
 
+<div class="col-sm-12 col-md-9">
+  {% if post %}
+  <div class="card border-light mb-3">
+    <div class="card-header bg-success text-center">
 
-        {% if post %}
-        <div class="card border-light mb-3" >
-            <div class="card-header">{{ post.post_category }}</div>
-            <div class="card-body">
-              <h5 class="card-title">{{ post.post_title }} </h5>
-              <p class="card-text">{{ post.post_content }}</p>
-            </div>
-          </div>                 
-        
-        {{ post.post_published }}
-        {{ post.pk }}
-        {% else %}
-         <p>Nincs ilyen cikk.</p>
-        {% endif %}    
+      {% if next  %}
+      <a class="btn btn-success" href="{% url 'blog:detail' next.slug %}">Következő:
+        {{next.post_title}}</a>
+      {% endif %}
 
+      {% if prev  %}
+      <a class="btn btn-success" href="{% url 'blog:detail' prev.slug %}">Előző: {{prev.post_title}}</a>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <h2 class="card-title ">{{ post.post_title }} </h2>
+      <p class="card-text">{{ post.post_content }}</p>
+    </div>
+  </div>
 
-  {% endblock %}
+  {{ post.post_published }}
+  {{ post.pk }}
+  {% else %}
+  <p>Nincs ilyen cikk.</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}
