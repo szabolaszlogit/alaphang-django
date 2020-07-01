@@ -18,12 +18,24 @@
     </div>
     <div class="card-body">
       <h2 class="card-title ">{{ post.post_title }} </h2>
-      <p class="card-text">{{ post.post_content }}</p>
+      <p class="content">{{ post.post_content | safe }}</p>
     </div>
+
+
+    <div class="card-header bg-success text-center">
+
+      {% if next  %}
+      <a class="btn btn-success" href="{% url 'blog:detail' next.slug %}">Következő:
+        {{next.post_title}}</a>
+      {% endif %}
+
+      {% if prev  %}
+      <a class="btn btn-success" href="{% url 'blog:detail' prev.slug %}">Előző: {{prev.post_title}}</a>
+      {% endif %}
+    </div>
+
   </div>
 
-  {{ post.post_published }}
-  {{ post.pk }}
   {% else %}
   <p>Nincs ilyen cikk.</p>
   {% endif %}

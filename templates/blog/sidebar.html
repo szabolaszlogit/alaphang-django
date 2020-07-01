@@ -7,7 +7,7 @@
     <p class="navbar-toggler d-md-none btn btn-primary d-block mb-1 text-left" data-toggle="collapse"
       data-target="#collapseSidebar" aria-controls="collapseSidebar" aria-expanded="false"
       aria-label="Toggle navigation">
-      Tartalom
+      <span class="navbar-toggler-icon"></span> Tartalom
     </p>
   </div>
 
@@ -57,8 +57,8 @@
       {% for post_in_actual_category in posts_in_actual_category %}
       <ul class="list-group list-group-flush">
         {% if post_in_actual_category.pk == post.pk %}
-        <li class="list-group-item text-secondary">
-          <a class=""
+        <li class="list-group-item">
+          <a class=" text-secondary"
             href="{% url 'blog:detail' post_in_actual_category.slug %}">{{ post_in_actual_category.post_title }}</a>
         </li>
         {% else %}
