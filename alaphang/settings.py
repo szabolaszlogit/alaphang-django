@@ -129,7 +129,3 @@ MEDIA_URL = '/media/'
 # for summenrnote
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SUMMERNOTE_THEME = 'bs4'
-
-SUMMERNOTE_CONFIG = {
-
-}
