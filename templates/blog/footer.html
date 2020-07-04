@@ -4,7 +4,7 @@
         <div class="col">
             {% if navbars %}  
             {% for navbar in navbars %}
-            <a class="p-2 text-muted" href="{% url 'blog:page' navbar.slug %}">{{ navbar.page_title }}</a>
+            <a class="p-2 text-muted d-inline-block" href="{% url 'blog:page' navbar.slug %}">{{ navbar.page_title }}</a>
             {% endfor %}
             {% else %}
             <p>Nincs ilyen cikk.</p>

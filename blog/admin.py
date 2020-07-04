@@ -20,8 +20,10 @@ class PageAdmin(admin.ModelAdmin):
     list_editable = ['page_show_in_navbar', 'page_order']   
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = [ 'category_name', 'slug']
+    list_display = [ 'category_name', 'slug', 'category_order']
     prepopulated_fields = {"slug": ("category_name",) }
+    ordering = ['category_order']
+    list_editable = ['category_order']
  
 
 class PostAdmin(SummernoteModelAdmin):

@@ -9,8 +9,13 @@ def defaultOrder():
 class Category(models.Model):
     category_name = models.CharField(max_length=200)
     slug = models.SlugField()
+    category_order = models.PositiveSmallIntegerField()
+
     def __str__(self):
         return self.category_name
+
+    class Meta:
+        ordering = ["category_order"]
 
 class Post(models.Model):
     post_category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -19,7 +24,6 @@ class Post(models.Model):
     post_published = models.BooleanField(default=True)    
     post_order = models.PositiveSmallIntegerField(default=defaultOrder)
     slug = models.SlugField()
-
 
     def __str__(self):
         return self.post_title
@@ -36,3 +40,6 @@ class Page(models.Model):
 
     def __str__(self):
         return self.page_title
+
+    class Meta:
+        ordering = ["page_order"]

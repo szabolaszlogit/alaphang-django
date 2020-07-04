@@ -8,7 +8,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'clean-blog.css' %}">
 
-<title>{{ post.post_title }}</title>
+<title>{{ title }}</title>
 </head>
 <body>
 
@@ -17,8 +17,10 @@
  <div class="container">  
         <div class="row">        
         {% include "blog/sidebar.html" %}
-        {% block content %}{% endblock %}  
+        {% block content %}{% endblock %}
+        {% block page_content %}{% endblock %}   
         {% block category %}{% endblock %} 
+        
         </div>
 </div> 
 

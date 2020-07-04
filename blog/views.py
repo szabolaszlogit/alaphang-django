@@ -47,18 +47,20 @@ class SlugDetailView(generic.DetailView):
             context['categorys'] = Category.objects.all()
             context['posts_in_actual_category'] = Post.objects.filter(post_category=self.object.post_category)
             context['navbars'] = Page.objects.all()
-
+            context['title'] = self.object.post_title    
             return context
 
 class PageDetailView(generic.DetailView):
     model = Page
     template_name = 'blog/page.html'
-    
+
     def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)           
-            context['categorys'] = Category.objects.all()
-            context['navbars'] = Page.objects.all()
-            return context
+        context = super().get_context_data(**kwargs)
+        context['navbars'] = Page.objects.all()
+        context['title'] = self.object.page_title 
+        context['categorys'] = Category.objects.all()
+        return context
+
 
 class Categorys(generic.ListView):
     model = Category
@@ -70,7 +72,9 @@ class Categorys(generic.ListView):
             context['navbars'] = Page.objects.all()
             context['posts'] = Post.objects.all()
             context['postnumbers'] = getPostNumber
+            context['title'] = 'Kategóriák - Alaphang'
             return context
+            
 
 class Posts(generic.ListView):
     model = Post
