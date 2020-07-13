@@ -78,3 +78,13 @@ class Categorys(generic.ListView):
 
 class Posts(generic.ListView):
     model = Post
+
+class IndexView(generic.TemplateView):
+    template_name = "blog/index.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['navbars'] = Page.objects.all()
+        context['firstpost'] = Post.objects.all()[:1].get()
+        context['title'] = 'Alaphang' 
+        context['categorys'] = Category.objects.all()
+        return context

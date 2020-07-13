@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+
+{% block category %}
+<div class="col-sm-12 col-md-9">
+
+    <div class="jumbotron">
+        <h1 class="display-4">Alaphang </h1>
+        <p class="lead">Alaphang - mert valahol el kell kezdeni!</p>
+        <hr class="my-4">
+    <p>Kinek szól ez a weboldal?</p>
+<p> Mindenkinek, aki szeretne megtanulni gitározni. Kezdőknek, újrakezdőknek, gyerekeknek, felnőtteknek.
+        A weboldal segítségével megszerezheted az alapvető elméleti és gyakorlati ismereteket a gitározással kapcsolatban.</p>
+        
+    <p>Mit tanulhatok meg?</p>
+<p> Megismerheted a gitárt, mint hangszert, felépítését, történelmét. Külön rész foglalkozik az elektromos gitárokkal.
+     Megtanulhatod a legfontosabb akkordokat, képes leszel dalkíséret eljátszására. Megismerkedhetsz a szólózás alapjaival, a skálákkal, a szólózási technikákkal.</p>
+        
+    <p>Hogyan használjam?</p>
+</p>Az oldalt egyrészt lehet tankönyvszerűen használni, tehát fejezetről fejezetre haladhatsz.
+Másrészt bizonyos részeket akár önállóan is tanulmányozhatsz, illetve visszatérhetsz feleleveníteni egy adott fejezetet.</p>
+        
+<p>Hogyan épül fel a weboldal?</p>
+<p> Az első rész a gitárról szóló elméleti bevezető. Aztán következik egy nem túl hosszú, de roppant fontos zeneelméleti rész, ide többször visszatérhetsz olvasgatni. 
+    Ezután megismerheted a legfontosabb akkordokat és dalkíséreti lehetőségeket.
+        A szólótechnika a skálák megismerésén és megértésén alapul, az oldalnak ez a része részletesen foglalkozik a skálák lejátszásával a gitáron.</p>
+        
+    <p class="alert alert-warning">A gitártanulás kitartást igényel, ez a legfontosabb. Ne add fel túl korán, és az eredmények jönni fognak! </p>
+        
+        <a class="btn btn-primary btn-lg" href="{% url 'blog:detail' firstpost.slug %}" role="button">Kezdj is bele!</a>
+      </div>
+
+
+
+
+</div>
+{% endblock %}
